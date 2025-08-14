@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quarterly Earnings – Interactive RevealJS Deck</title>
+  <!-- Reveal.js core CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5/dist/theme/black.css" id="theme" />
+  <!-- Code highlight theme (highlight.js default) -->
+  <link rel="stylesheet" href="https://unpkg.com/highlight.js@11.9.0/styles/github.min.css">
+  <style>
+    .brand { font-weight: 700; letter-spacing: .2px; }
+    .kpi { font-size: 1.3rem; }
+    .muted { opacity: .75; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- TITLE -->
+      <section>
+        <h2 class="brand">Quarterly Earnings Report</h2>
+        <p>Interactive presentation demoed with <strong>RevealJS</strong></p>
+        <p class="muted">Prepared by: <strong>Technical Consultant</strong></p>
+        <p>Email: <strong>24f2001743@ds.study.iitm.ac.in</strong></p>
+        <p class="muted">Use ▶/◀ or spacebar. Press <kbd>S</kbd> for speaker view.</p>
+        <aside class="notes">
+          Welcome! This deck showcases modern presentation capabilities requested by stakeholders: markdown, fragments, code highlighting, math, and speaker notes. Use the S key for presenter notes and a timer.
+        </aside>
+      </section>
+
+      <!-- MARKDOWN SLIDE (Requirement: at least one slide written in Markdown) -->
+      <section data-markdown>
+        <textarea data-template>
+### Agenda (Markdown Slide)
+- Business highlights
+- Financial performance
+- Outlook & guidance
+- Q&A
+
+> This slide is authored in **Markdown** and rendered via the RevealJS Markdown plugin.
+        </textarea>
+        <aside class="notes">Keep this brisk; it's just a signpost for the sections to come.</aside>
+      </section>
+
+      <!-- KPI WITH FRAGMENTS (animated elements) -->
+      <section>
+        <h3>Highlights (Animated Fragments)</h3>
+        <ul>
+          <li class="fragment">Revenue: <span class="kpi">$4.2B</span> (+12% YoY)</li>
+          <li class="fragment">EPS (diluted): <span class="kpi">$1.17</span></li>
+          <li class="fragment">Free Cash Flow: <span class="kpi">$610M</span></li>
+          <li class="fragment">Net Retention: <span class="kpi">118%</span></li>
+        </ul>
+        <aside class="notes">Advance one bullet at a time to pace the story; pause after FCF to tie to capex discipline.</aside>
+      </section>
+
+      <!-- CODE SAMPLE WITH SYNTAX HIGHLIGHTING -->
+      <section>
+        <h3>Code Sample (Syntax Highlighting)</h3>
+        <p class="muted">Simple Monte Carlo for VaR (Python)</p>
+        <pre><code class="language-python">import numpy as np
+
+np.random.seed(42)
+mu, sigma = 0.0006, 0.012  # daily drift and volatility
+paths = 100_000
+horizon = 10  # days
+
+r = np.random.normal(mu, sigma, size=(paths, horizon))
+portfolio_pnl = 1_000_000 * (np.exp(r.sum(axis=1)) - 1)
+
+var_95 = np.percentile(portfolio_pnl, 5)
+print(f"10-day 95% VaR: ${-var_95:,.0f}")
+</code></pre>
+        <aside class="notes">Emphasize this is illustrative only; not production risk code. The point is syntax highlighting + technical credibility.</aside>
+      </section>
+
+      <!-- MATH / EQUATIONS -->
+      <section>
+        <h3>Financial Math</h3>
+        <p>Discounted Cash Flow (DCF) present value:</p>
+        <p>\[ PV = \sum_{t=1}^{T} \frac{FCF_t}{(1 + r)^t} \]</p>
+        <p>CAPM cost of equity:</p>
+        <p>\[ r_e = r_f + \beta (r_m - r_f) \]</p>
+        <aside class="notes">If asked, relate r to WACC and show sensitivity to growth and discount rates.</aside>
+      </section>
+
+      <!-- NOTES DEMO -->
+      <section>
+        <h3>Presenter Notes Demo</h3>
+        <p>Open speaker view with <kbd>S</kbd>. Notes are only visible to you.</p>
+        <aside class="notes">Remind stakeholders that the deck is hosted on GitHub Pages; link will be shared post-meeting.</aside>
+      </section>
+
+      <!-- THANK YOU -->
+      <section>
+        <h3>Thank You</h3>
+        <p>Questions?</p>
+        <p class="muted">Contact: <strong>24f2001743@ds.study.iitm.ac.in</strong></p>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Reveal.js core + plugins -->
+  <script src="https://unpkg.com/reveal.js@5/dist/reveal.js"></script>
+  <script src="https://unpkg.com/reveal.js@5/plugin/markdown/markdown.js"></script>
+  <script src="https://unpkg.com/reveal.js@5/plugin/highlight/highlight.js"></script>
+  <script src="https://unpkg.com/reveal.js@5/plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@5/plugin/math/math.js"></script>
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <script>
+    const deck = new Reveal({
+      hash: true,
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ],
+      slideNumber: true,
+      transition: 'slide'
+    });
+    deck.initialize();
+  </script>
+</body>
+</html>
